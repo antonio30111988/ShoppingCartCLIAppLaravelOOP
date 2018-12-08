@@ -1,69 +1,49 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+## SETUP
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+PHP VERSION 5.6*,.7.*
 
-## About Laravel
+Laravel 5.7
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+SQLITE 
+- you should install Sqlite library for your system by enabling load of it in php.ini define don your system. You can
+make it by uncommenting .so (Linux) or .dll sqlite line
+- after making changes please restart your web server service (Apache , Nginx)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+NOTE: on Linux ou should probably install Sqlite before:
+$ sudo apt install sqlite3
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+From app root run:
 
-## Learning Laravel
+$ php artisan migrate
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+- env file is already public
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+## DOCS
 
-## Laravel Sponsors
+Apllication helps for managing a simple in memeory stored inventory and shopping cart.
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+Main functionalities are:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
+- you can fill  your inventory with  products with by defining main data (sku, name, , qty, price) before halting inventory state and switching to shopping cart management
+- by execution of different commands available you can add, remove, reset items from shoppin cart
+- for adding a product to shopping cart your products must be already available in inGventory system and in amount which is equal or higher than amount stated on ADDING TO CART.
+- if no amount left or you willing amount(qty) is higher than Stock no execution to be made
+- SKU filed is unique identificator of a Product and cannot be any duplicate entries on SKUs
 
-## Contributing
+Command list:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+INVENTORY:ADD -adding product to inventory system
+INVENTORY:END - ending the inventory fill proccess
 
-## Security Vulnerabilities
+CART:ADD -add product (sku, qty) combo
+CART:REMOVE - remove on same way by substarcting defined amount
+CART:END - finsih a App and exit
+CART:CHECKOUT - printing of shopping cart info with subtotal and FINAL TOTAL for paying. Also after each checkout your cart 
+would be emty again and ready for a new order!
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+All CLI commands are required to run in a schema like:
 
-## License
+$ php artisan COMMAND_NAME
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+LSITING OF COMMANDS AVAILABLE:
+$ php artisan list 
